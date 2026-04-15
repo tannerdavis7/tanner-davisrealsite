@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Tanner Davis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="scratch-nav" id="top">
+        <span class="nav-brand">Tanner Davis</span>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#journey">My Journey</a></li>
+            <li><a href="#passions">Passions</a></li>
+            <li><a href="#data">Data Viz</a></li>
+            <li><a href="#app">App</a></li>
+            <li><a href="index.html">Professional Site</a></li>
+        </ul>
+    </nav>
+
+    <!-- DIV 1: Hero Banner -->
+    <div class="div-hero">
+        <img src="tdavisphoto.jpg" alt="Tanner Davis in the mountains" class="hero-img">
+        <h1>Tanner H. Davis</h1>
+        <p class="hero-subtitle">Finance &bull; Faith &bull; Adventure</p>
+    </div>
+
+    <!-- DIV 2: About Me Section -->
+    <div class="div-section" id="about">
+        <h2>Who I Am</h2>
+        <div class="section-line"></div>
+        <p>
+            I'm Tanner Davis — a BYU Pre-Business student, entrepreneur, returned missionary, and lifelong outdoorsman from Highland, Utah. I believe in working hard, serving others, and never missing a chance to get outside. Whether I'm analyzing financial data, leading a team of volunteers, or catching waves, I bring the same energy and commitment to everything I do.
+        </p>
+        <p style="margin-top: 1rem;">
+            I'm passionate about finance, leadership, and building meaningful relationships. My goal is to combine my entrepreneurial experience with a strong business education to make a real impact in the world of finance.
+        </p>
+    </div>
+
+    <!-- DIV 3: My Journey Timeline -->
+    <div class="div-section" id="journey">
+        <h2>My Journey</h2>
+        <div class="section-line"></div>
+
+        <!-- ORDERED LIST with nested UNORDERED LIST -->
+        <ol class="scratch-list">
+            <li>
+                <strong>Growing Up in Highland, UT</strong>
+                <ul>
+                    <li>Earned my Eagle Scout award through the Boy Scouts of America</li>
+                    <li>Developed a love for the outdoors — fishing, hiking, and camping became my escapes</li>
+                    <li>Started Tanner's Lawn Care at age 12 and grew it for 7 years</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Lone Peak High School (Graduated 2023)</strong>
+                <ul>
+                    <li>Maintained a 4.0 GPA and earned AP Scholar recognition</li>
+                    <li>Led the Unified Special Olympics club as Student Head</li>
+                    <li>Received the Regents Scholarship and graduated with honors</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Volunteer Missionary in Bakersfield, CA (2023–2025)</strong>
+                <ul>
+                    <li>Served a two-year mission for the Church of Jesus Christ of Latter-Day Saints</li>
+                    <li>Achieved fluency in Spanish through full cultural immersion</li>
+                    <li>Led groups of 16+ missionaries and presented 50+ workshops</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Brigham Young University (2025–Present)</strong>
+                <ul>
+                    <li>Pursuing a Pre-Business track with plans to study finance</li>
+                    <li>Building on my entrepreneurial and analytical background</li>
+                    <li>Excited to enter the professional finance world</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Passions & Interests Section -->
+    <div class="div-section" id="passions">
+        <h2>What Drives Me</h2>
+        <div class="section-line"></div>
+        <p>
+            Outside of school and work, you'll find me outdoors or watching the Steelers. Here are a few things I'm passionate about:
+        </p>
+
+        <div class="timeline-item" style="margin-top: 1.5rem;">
+            <h3>Pittsburgh Steelers</h3>
+            <p>Die-hard Steelers fan. There's nothing like watching the black and gold play on Sundays. Head coach Mike Tomlin's leadership philosophy has been a real inspiration to me — check out some of his best quotes in <a href="tomlin-quotes.html">my Tomlin Quote Generator</a>.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>The Outdoors</h3>
+            <p>Surfing, fishing, hiking, and camping keep me grounded. Growing up in Utah gave me access to some of the best trails and mountains in the country, and I take every chance I can to get outside.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Service &amp; Community</h3>
+            <p>From Special Olympics to my mission, helping others succeed is what gives me the most fulfillment. I believe real leadership means lifting those around you.</p>
+        </div>
+
+        <!-- Embedded YouTube Video -->
+        <h2 style="margin-top: 2.5rem;">A City of Champions</h2>
+        <div class="section-line"></div>
+        <p>Here's a look at why Pittsburgh is the greatest football city in the world:</p>
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/ZO2063dgjBM" 
+                title="Pittsburgh Steelers Highlights" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <!-- DIV: Dark Section — Data Visualization -->
+    <div class="div-dark" id="data">
+        <h2>Interactive Data Visualization</h2>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <p class="font-body" style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 1.5rem;">
+                An interactive Tableau visualization exploring global economic data. Click and hover to explore the data yourself.
+            </p>
+            <div class="tableau-container">
+                <div class='tableauPlaceholder' style='width: 100%; height: 600px;'>
+                    <object class='tableauViz' width='100%' height='600' style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                        <param name='embed_code_version' value='3' />
+                        <param name='site_root' value='' />
+                        <param name='name' value='WorldIndicators/GDPpercapita' />
+                        <param name='tabs' value='yes' />
+                        <param name='toolbar' value='yes' />
+                        <param name='animate_transition' value='yes' />
+                        <param name='display_static_image' value='yes' />
+                        <param name='display_spinner' value='yes' />
+                        <param name='display_overlay' value='yes' />
+                        <param name='display_count' value='yes' />
+                    </object>
+                </div>
+            </div>
+            <script type='text/javascript'>
+                var divElement = document.querySelector('.tableauPlaceholder');
+                var vizElement = divElement.querySelector('.tableauViz');
+                vizElement.style.display = 'block';
+                var scriptElement = document.createElement('script');
+                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v2.js';
+                divElement.appendChild(scriptElement);
+            </script>
+        </div>
+    </div>
+
+    <!-- App Link Section -->
+    <div class="div-section" id="app" style="text-align: center;">
+        <h2>Mike Tomlin Quote Generator</h2>
+        <div class="section-line" style="margin-left: auto; margin-right: auto;"></div>
+        <p>Need some motivation from the greatest coach in the NFL? Click below to get inspired by the legendary Mike Tomlin.</p>
+        <a href="tomlin-quotes.html" class="app-banner" style="margin-top: 1rem;">Launch Quote Generator &rarr;</a>
+    </div>
+
+    <!-- On-page anchor: Back to Top -->
+    <div style="text-align: center; padding: 2rem;">
+        <a href="#top" class="back-to-top">&uarr; Back to Top</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="scratch-footer">
+        <p>&copy; 2026 Tanner H. Davis &bull; <a href="index.html">Back to Professional Site</a></p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mike Tomlin Quote Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Condensed', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #101010;
+            background-image: 
+                radial-gradient(ellipse at 20% 50%, rgba(255, 182, 0, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(255, 182, 0, 0.04) 0%, transparent 60%);
+            color: #ffffff;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #FFB612;
+            text-shadow: 0 0 30px rgba(255, 182, 18, 0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 0.3rem;
+        }
+
+        .steelers-bar {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .steelers-bar span {
+            width: 40px;
+            height: 5px;
+            border-radius: 3px;
+        }
+
+        .bar-gold { background: #FFB612; }
+        .bar-red { background: #C41E3A; }
+        .bar-blue { background: #00529B; }
+
+        /* Quote Card */
+        .quote-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%);
+            border: 2px solid #FFB612;
+            border-radius: 12px;
+            padding: 3rem 2.5rem;
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(255, 182, 18, 0.08),
+                inset 0 1px 0 rgba(255, 182, 18, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .quote-card::before {
+            content: '\201C';
+            position: absolute;
+            top: -10px;
+            left: 25px;
+            font-size: 8rem;
+            font-family: 'Oswald', serif;
+            color: rgba(255, 182, 18, 0.1);
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #f0f0f0;
+            font-weight: 300;
+            font-style: italic;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .quote-text.fade-out {
+            opacity: 0;
+        }
+
+        .quote-text.fade-in {
+            opacity: 1;
+        }
+
+        .quote-attribution {
+            margin-top: 1.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            color: #FFB612;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        .quote-context {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-style: italic;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Button */
+        .btn-container {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-generate {
+            background: #FFB612;
+            color: #101010;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 182, 18, 0.3);
+        }
+
+        .btn-generate:hover {
+            background: #ffca4a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 182, 18, 0.4);
+        }
+
+        .btn-generate:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-category {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0.6rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-category:hover, .btn-category.active {
+            border-color: #FFB612;
+            color: #FFB612;
+            background: rgba(255, 182, 18, 0.08);
+        }
+
+        /* Counter */
+        .counter {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Back link */
+        .back-link {
+            margin-top: 2.5rem;
+            text-align: center;
+        }
+
+        .back-link a {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .back-link a:hover {
+            color: #FFB612;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2rem; letter-spacing: 2px; }
+            .quote-card { padding: 2rem 1.5rem; }
+            .quote-text { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Mike Tomlin</h1>
+        <div class="subtitle">Quote Generator</div>
+        <div class="steelers-bar">
+            <span class="bar-gold"></span>
+            <span class="bar-blue"></span>
+            <span class="bar-red"></span>
+            <span class="bar-gold"></span>
+        </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="btn-container" style="margin-bottom: 1rem;">
+        <button class="btn-category active" data-category="all" onclick="setCategory('all', this)">All</button>
+        <button class="btn-category" data-category="leadership" onclick="setCategory('leadership', this)">Leadership</button>
+        <button class="btn-category" data-category="toughness" onclick="setCategory('toughness', this)">Toughness</button>
+        <button class="btn-category" data-category="humor" onclick="setCategory('humor', this)">Humor</button>
+        <button class="btn-category" data-category="competition" onclick="setCategory('competition', this)">Competition</button>
+    </div>
+
+    <div class="quote-card">
+        <div class="quote-text" id="quoteText">
+            Click the button below to generate a Mike Tomlin quote.
+        </div>
+        <div class="quote-attribution">— Coach Mike Tomlin</div>
+        <div class="quote-context" id="quoteContext"></div>
+    </div>
+
+    <div class="btn-container">
+        <button class="btn-generate" onclick="generateQuote()">Generate Quote</button>
+    </div>
+
+    <div class="counter" id="counter">0 quotes generated</div>
+
+    <div class="back-link">
+        <a href="scratch.html">&larr; Back to Scratch Page</a>
+    </div>
+
+    <script>
+        const quotes = [
+            { text: "The standard is the standard.", category: "leadership", context: "Press conference, a phrase he's repeated countless times" },
+            { text: "We do not care. We don't live in our fears. We live in our hopes.", category: "toughness", context: "Before a playoff game" },
+            { text: "I don't have time to explain why I don't have time to explain.", category: "humor", context: "Post-game press conference" },
+            { text: "We're not going to be the hunted, we're going to be the hunters.", category: "competition", context: "Before a matchup against a top-ranked team" },
+            { text: "Next man up. That's the mentality.", category: "toughness", context: "On dealing with injuries during the season" },
+            { text: "I'm not going to paint with a broad brush.", category: "leadership", context: "Responding to media questions" },
+            { text: "We'll accept the things that we cannot change and have the courage to change the things we can.", category: "leadership", context: "Post-game reflection" },
+            { text: "Obviously.", category: "humor", context: "His iconic one-word answer to reporters" },
+            { text: "Splash plays change games. Splash plays change seasons.", category: "competition", context: "Describing the importance of game-changing moments" },
+            { text: "If you don't stand for something, you'll fall for anything.", category: "leadership", context: "On team culture and values" },
+            { text: "We don't have time for spectators. You're either in or you're out.", category: "toughness", context: "Team meeting" },
+            { text: "I like our chances.", category: "competition", context: "Before a critical game" },
+            { text: "Excuses are tools of the incompetent, used to build monuments of nothingness.", category: "toughness", context: "On accountability" },
+            { text: "We're in the business of winning football games. Period.", category: "competition", context: "Press conference about team priorities" },
+            { text: "I have a lot of confidence in these men. We'll find a way.", category: "leadership", context: "After a tough loss" },
+            { text: "You can't worry about things you can't control. Focus on what you can.", category: "leadership", context: "Mid-season press conference" },
+            { text: "We embrace the adversity. We always do.", category: "toughness", context: "During a challenging season stretch" },
+            { text: "I'll let you guys write the stories. I'm just going to coach football.", category: "humor", context: "Dismissing media narratives" },
+            { text: "We're not going to ride the wave. We're going to make the wave.", category: "competition", context: "On creating momentum" },
+            { text: "We'll divide and conquer as necessary.", category: "leadership", context: "On delegating responsibilities" },
+            { text: "I'm not going to microwave the process. We let it marinate.", category: "humor", context: "On developing young players" },
+            { text: "We're not going to flinch. We never do.", category: "toughness", context: "Ahead of a rivalry game" },
+            { text: "You're going to get our best. Every single week.", category: "competition", context: "Promise to fans and opponents alike" },
+            { text: "Iron sharpens iron. That's what competition does.", category: "competition", context: "On internal team competition" },
+            { text: "I don't blink.", category: "toughness", context: "When asked about pressure" },
+            { text: "I never discuss injuries. Ever.", category: "humor", context: "Recurring press conference moment" },
+            { text: "We're going to unleash our guys and let them play.", category: "competition", context: "Before a big game" },
+            { text: "We've got a group of fighters. That's what I love about this team.", category: "leadership", context: "After a comeback victory" },
+            { text: "We're not here to participate. We're here to take it.", category: "toughness", context: "Playoff preparation" },
+            { text: "Comfort is the enemy of progress.", category: "leadership", context: "On pushing the team forward" }
+        ];
+
+        let currentCategory = 'all';
+        let count = 0;
+        let lastIndex = -1;
+
+        function setCategory(category, btn) {
+            currentCategory = category;
+            document.querySelectorAll('.btn-category').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function generateQuote() {
+            const filtered = currentCategory === 'all' 
+                ? quotes 
+                : quotes.filter(q => q.category === currentCategory);
+
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * filtered.length);
+            } while (randomIndex === lastIndex && filtered.length > 1);
+            lastIndex = randomIndex;
+
+            const quote = filtered[randomIndex];
+            const textEl = document.getElementById('quoteText');
+            const contextEl = document.getElementById('quoteContext');
+
+            // Fade out
+            textEl.classList.add('fade-out');
+            contextEl.style.opacity = '0';
+
+            setTimeout(() => {
+                textEl.textContent = quote.text;
+                contextEl.textContent = quote.context;
+                textEl.classList.remove('fade-out');
+                textEl.classList.add('fade-in');
+                contextEl.style.opacity = '1';
+            }, 400);
+
+            count++;
+            document.getElementById('counter').textContent = count + (count === 1 ? ' quote generated' : ' quotes generated');
+        }
+    </script>
+</body>
+</html>

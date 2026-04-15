@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé | Tanner Davis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2332;
+            --gold: #c9a84c;
+            --gold-light: #e0c97f;
+            --slate: #3a4a5c;
+            --light: #f4f1eb;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            color: #333;
+            background: var(--light);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--navy);
+            padding: 1rem 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold) !important;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.85) !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold) !important;
+        }
+
+        /* Resume Container */
+        .resume-wrapper {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .resume-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 100%);
+            padding: 3rem;
+            color: white;
+            text-align: center;
+        }
+        .resume-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .resume-header .subtitle {
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        .resume-header .contact-info {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+        }
+        .resume-header .contact-info a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        .resume-body {
+            padding: 2.5rem 3rem;
+        }
+        .resume-section {
+            margin-bottom: 2.5rem;
+        }
+        .resume-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--navy);
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--gold);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .resume-entry {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--light);
+            transition: border-color 0.3s;
+        }
+        .resume-entry:hover {
+            border-left-color: var(--gold);
+        }
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .entry-title {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 1.1rem;
+        }
+        .entry-location {
+            color: var(--slate);
+            font-size: 0.9rem;
+        }
+        .entry-role {
+            font-weight: 600;
+            color: var(--gold);
+            font-style: italic;
+        }
+        .entry-date {
+            color: var(--slate);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .resume-entry ul {
+            margin-top: 0.5rem;
+            padding-left: 1.2rem;
+        }
+        .resume-entry ul li {
+            margin-bottom: 0.3rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+        .skill-tag {
+            background: var(--light);
+            color: var(--navy);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+        .skill-tag:hover {
+            background: var(--gold);
+            color: var(--white);
+            border-color: var(--gold);
+        }
+
+        /* Awards */
+        .award-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.7rem;
+        }
+        .award-item i {
+            color: var(--gold);
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.6);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .resume-body { padding: 1.5rem; }
+            .resume-header h1 { font-size: 2rem; }
+            .entry-header { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Tanner Davis</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="resume.html">Résumé</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Resume -->
+    <div class="resume-wrapper">
+        <div class="resume-header">
+            <h1>Tanner H. Davis</h1>
+            <p class="subtitle">Early-career Finance Professional</p>
+            <div class="contact-info">
+                <a href="mailto:Tannerdavis7123@gmail.com"><i class="fas fa-envelope me-1"></i> Tannerdavis7123@gmail.com</a>
+                &nbsp;&bull;&nbsp;
+                <span><i class="fas fa-phone me-1"></i> (801) 641-2509</span>
+            </div>
+        </div>
+
+        <div class="resume-body">
+
+            <!-- Education -->
+            <div class="resume-section">
+                <h2 class="resume-section-title"><i class="fas fa-graduation-cap me-2"></i>Education</h2>
+
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <div>
+                            <span class="entry-title">Brigham Young University</span>
+                            <span class="entry-location"> &mdash; Provo, UT</span>
+                        </div>
+                        <span class="entry-date">Expected May 2029</span>
+                    </div>
+                    <div class="entry-role">Pre-Business (Undergraduate)</div>
+                    <ul>
+                        <li>Relevant Coursework: Stats 121, Spanish 321</li>
+                    </ul>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <div>
+                            <span class="entry-title">Lone Peak High School</span>
+                            <span class="entry-location"> &mdash; Highland, UT</span>
+                        </div>
+                        <span class="entry-date">May 2023</span>
+                    </div>
+                    <div class="entry-role">High School Diploma</div>
+                    <ul>
+                        <li>GPA: 4.00 &bull; ACT: 29 &bull; Regents Scholarship</li>
+                        <li>National Honors Society &bull; AP Scholar &bull; Graduated with Honors</li>
+                        <li>Unified Special Olympics — Student Head; helped establish the club</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Professional Experience -->
+            <div class="resume-section">
+                <h2 class="resume-section-title"><i class="fas fa-briefcase me-2"></i>Professional Experience</h2>
+
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <div>
+                            <span class="entry-title">Tanner's Lawn Care</span>
+                            <span class="entry-location"> &mdash; Alpine, UT</span>
+                        </div>
+                        <span class="entry-date">Apr 2016 – Aug 2023</span>
+                    </div>
+                    <div class="entry-role">Founder &amp; CEO</div>
+                    <ul>
+                        <li>Founded a lawn care business, leveraging existing connections to expand the client base each year</li>
+                        <li>Managed finances to hire and retain 2 employees; grew the customer base by 500% over 7 years</li>
+                    </ul>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <div>
+                            <span class="entry-title">Bank of America — Habitat for Humanity</span>
+                            <span class="entry-location"> &mdash; Salt Lake City, UT</span>
+                        </div>
+                        <span class="entry-date">May 2022 – Aug 2022</span>
+                    </div>
+                    <div class="entry-role">Summer Intern</div>
+                    <ul>
+                        <li>Analyzed, selected, and integrated a new HR program to accelerate the onboarding process</li>
+                        <li>Co-planned and executed a major fundraiser that exceeded its goal by $15,000 (+15%)</li>
+                        <li>Developed donor outreach strategies and improved volunteer experience through data analysis</li>
+                    </ul>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <div>
+                            <span class="entry-title">Alpine Echo</span>
+                            <span class="entry-location"> &mdash; Pleasant Grove, UT</span>
+                        </div>
+                        <span class="entry-date">Jan 2020 – May 2022</span>
+                    </div>
+                    <div class="entry-role">CNC Shop Assistant</div>
+                    <ul>
+                        <li>Learned to operate CNC machines and grinders, advancing to manage a warehouse section</li>
+                        <li>Organized and streamlined the packaging process to improve shop efficiency</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Leadership & Service -->
+            <div class="resume-section">
+                <h2 class="resume-section-title"><i class="fas fa-hands-helping me-2"></i>Leadership &amp; Service</h2>
+
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <div>
+                            <span class="entry-title">Church of Jesus Christ of Latter-Day Saints</span>
+                            <span class="entry-location"> &mdash; Bakersfield, CA</span>
+                        </div>
+                        <span class="entry-date">Aug 2023 – Aug 2025</span>
+                    </div>
+                    <div class="entry-role">Volunteer Missionary</div>
+                    <ul>
+                        <li>Oversaw and coordinated operations for groups of 16+ missionaries</li>
+                        <li>Presented 50+ workshops on leadership, planning, and community engagement</li>
+                        <li>Achieved fluency in Spanish through service and cultural immersion</li>
+                    </ul>
+                </div>
+
+                <div class="resume-entry">
+                    <div class="entry-header">
+                        <div>
+                            <span class="entry-title">Special Olympics Utah</span>
+                            <span class="entry-location"> &mdash; Salt Lake City, UT</span>
+                        </div>
+                        <span class="entry-date">Aug 2021 – May 2023</span>
+                    </div>
+                    <div class="entry-role">Youth Activation Committee Member</div>
+                    <ul>
+                        <li>Helped establish over 100 Unified Champion Schools</li>
+                        <li>Collaborated with CEO and government leaders to secure a $5,000 grant</li>
+                        <li>Coordinated 10+ activities for 20 Special Olympics athletes and 30 peer tutors</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Skills & Awards -->
+            <div class="resume-section">
+                <h2 class="resume-section-title"><i class="fas fa-star me-2"></i>Skills &amp; Awards</h2>
+                <div class="skills-grid mb-3">
+                    <span class="skill-tag">Fluent in Spanish</span>
+                    <span class="skill-tag">Financial Analysis</span>
+                    <span class="skill-tag">Fundraising</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Leadership</span>
+                    <span class="skill-tag">Microsoft Office (Certified 2023)</span>
+                    <span class="skill-tag">CNC Operations</span>
+                    <span class="skill-tag">Community Engagement</span>
+                </div>
+
+                <div class="award-item"><i class="fas fa-trophy"></i>Eagle Scout — Boy Scouts of America</div>
+                <div class="award-item"><i class="fas fa-trophy"></i>Regents Scholarship</div>
+                <div class="award-item"><i class="fas fa-trophy"></i>AP Scholar &bull; National Honors Society</div>
+                <div class="award-item"><i class="fas fa-trophy"></i>Microsoft Office Specialist Certification (2023)</div>
+            </div>
+
+            <!-- Interests -->
+            <div class="resume-section" style="margin-bottom: 0;">
+                <h2 class="resume-section-title"><i class="fas fa-heart me-2"></i>Interests</h2>
+                <p style="color: #555;">Helping others succeed and making meaningful connections &bull; Surfing &bull; Fishing &bull; Hiking &bull; Camping &bull; Pittsburgh Steelers</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="mb-1">&copy; 2026 Tanner H. Davis</p>
+            <p><a href="mailto:Tannerdavis7123@gmail.com">Tannerdavis7123@gmail.com</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
